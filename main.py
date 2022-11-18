@@ -6,9 +6,10 @@ availableFormulas = ["+", "--", "/", "*", "%", "^", "power", "pow", "root", "-"]
 # Leave the - on purpose at the end for situations with negative numbers like (-1 + 2) or (-1 - -2)
 # sum | division | multiplication | percent| power | root | subtraction
 
-#in the parse we convert the word for a unique formula: like pow and power to ^ or -- to +
+# in the parse we convert the word for a unique formula: like pow and power to ^ or -- to +
 def parseInput(userInput):
     userInput = userInput.replace(" ", "")
+    userInput = userInput.replace(",", ".")
     for formula in availableFormulas:
         if formula in userInput.lower():
             realFormula = formula
@@ -24,7 +25,7 @@ def parseInput(userInput):
 
 
 def solve(userInput, formula):
-    #special case is:
+    # special case is:
     # change for this situation -1 -1
     especialCase = False
     if formula == '-' and userInput[0] == '-':
